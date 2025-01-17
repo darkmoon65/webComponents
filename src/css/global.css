@@ -1,0 +1,19 @@
+:root {
+    --font-family: 'Arial', sans-serif;
+    --primary-color: #ffffff; 
+    --secondary-color: #2ecc71;
+    --background-color: #00003d;
+    --text-color: #ffffff;
+    --font-size-base: 14px;
+    --task-bg-completed: #00ff00;
+    --task-bg-pending: #8e6d00;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}

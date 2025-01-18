@@ -1,7 +1,7 @@
-import './card-tarea.css';
-import templateHTML from './card-tarea.html';
+import './header.css';
+import templateHTML from './header.html';
 
-class TaskItem extends HTMLElement {
+class Header extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -54,12 +54,6 @@ class TaskItem extends HTMLElement {
             padding:16px;
             border-radius:var(--border-sm);
         }
-
-        @media  (min-width: 844px){
-        
-        }
-
-
         `;
         this.shadowRoot.appendChild(style);
 
@@ -87,4 +81,4 @@ class TaskItem extends HTMLElement {
     }
 }
 
-customElements.define('task-item', TaskItem);
+customElements.define('header', Header);

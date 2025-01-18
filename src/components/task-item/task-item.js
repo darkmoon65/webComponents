@@ -1,7 +1,7 @@
-import './header.css';
-import templateHTML from './header.html';
+import './task-item.css';
+import templateHTML from './task-item.html';
 
-class Header extends HTMLElement {
+class TaskItem extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -29,7 +29,7 @@ class Header extends HTMLElement {
         }
 
 
-        #complete_button{
+        #complete_btn{
             background: var(--task-bg-completed);
             border:none;
             border-radius:var(--border-full);
@@ -39,7 +39,7 @@ class Header extends HTMLElement {
 
         }
 
-        #pendient_button{ 
+        #pending_btn{ 
             background: var(--task-bg-pending);
             border:none;
             border-radius:var(--border-full);
@@ -54,6 +54,18 @@ class Header extends HTMLElement {
             padding:16px;
             border-radius:var(--border-sm);
         }
+
+        .header_card img{
+            cursor:pointer;
+        }
+
+        @media  (min-width: 844px){
+        
+        }
+
+
+
+
         `;
         this.shadowRoot.appendChild(style);
 
@@ -81,4 +93,4 @@ class Header extends HTMLElement {
     }
 }
 
-customElements.define('header', Header);
+customElements.define('task-item', TaskItem);

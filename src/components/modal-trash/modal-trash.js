@@ -1,7 +1,7 @@
-import './task-form.css';
-import templateHTML from './task-form.html';
+import './modal-trash.css';
+import templateHTML from './modal-trash.html';
 
-class TaskForm extends HTMLElement {
+class ModalTrash extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -10,7 +10,7 @@ class TaskForm extends HTMLElement {
 
     style.textContent = `
         
-       :host {
+        :host {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -18,7 +18,7 @@ class TaskForm extends HTMLElement {
           height: var(--h-full);
         }
 
-        .task_creation {
+        .modal {
           background: var(--bg-light);
           padding: 20px;
           border-radius: var(--border-sm);
@@ -32,49 +32,20 @@ class TaskForm extends HTMLElement {
           text-align: center;
         }
 
-        .form {
+        .modal {
           display: flex;
           flex-direction: column;
           gap: var(--gap-xs);
         }
 
-        .form_group {
-          display: flex;
-          flex-direction: column;
+             
+        .icon{
+        display:flex;
+        justify-content:center;
+        flex-direction:column;
+        align-items:center
         }
-
-        label {
-          font-weight: var(--bold);
-          margin-bottom: 5px;
-        }
-
-        input, textarea {
-          border: 1px solid var(--text-dark);
-          border-radius: var(--border-sm);
-          padding: 10px;
-          font-size: var(--font-size-base);
-        }
-
-        textarea {
-          resize: none;
-          height: 100px;
-        }
-
-        .status {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .status_badge {
-          background: var(--task-bg-pending);
-          padding: 5px 10px;
-          border-radius: var(--border-sm);
-          color: var(--text-light);
-          font-weight: var(--bold);
-        }
-
-        .form_actions {
+        .modal_actions {
           display: flex;
           justify-content: space-between;
           gap: var(--gap-xs);
@@ -93,7 +64,7 @@ class TaskForm extends HTMLElement {
           color: var(--text-light);
         }
 
-        .btn_create {
+        .btn_continue {
           background: var(--primary-color);
           color: var(--text-light);
         }
@@ -124,4 +95,4 @@ class TaskForm extends HTMLElement {
   }
 }
 
-customElements.define('task-form', TaskForm);
+customElements.define('modal-trash', ModalTrash);

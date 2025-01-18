@@ -9,5 +9,7 @@ import './components/task-all/task-all.js';
 import './components/more-task/more-task.js';
 import './components/board-task/board-task.js';
 import './components/create-task/create-task.js';
+import './components/modal-trash/modal-trash.js';
+
 
 

@@ -1,4 +1,36 @@
-<div>
-    <input type="text">
-    <button class="boton_login">loguear</button>
+<div class="auth_login">
+  <form class="login">
+    <div class="logo_login">
+      <img
+        src="./../../assets/logo_tres.png"
+        alt="logo"
+        width="400"
+        height="auto"
+      />
+    </div>
+    <div class="form_login">
+      <h2>Inicio de sesión</h2>
+      <div>
+        <label for="Usuario">Usuario</label>
+        <input
+          type="text"
+          id="usuario"
+          placeholder="Ingresa tu usuario"
+          required
+        />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Ingresa tu contraseña"
+          required
+        />
+      </div>
+
+      <button class="boton_login">Iniciar sesión</button>
+      <button class="boton_login_disable">Iniciar sesión</button>
+    </div>
+  </form>
 </div>

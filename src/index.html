@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestor de Tareas</title>
-    <link rel="stylesheet" href="css/global.css">
-</head>
+    <link rel="stylesheet" href="css/global.css" />
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <auth-login></auth-login>
-        <task-item></task-item>
-        <div id="dashboard" style="display: none;">
-            <task-filter></task-filter>
-            <task-form></task-form>
-            <error-message></error-message>
+      <auth-login></auth-login>
+      <task-item></task-item>
 
-        </div>
+      <div id="dashboard" style="display: none">
+        <task-filter></task-filter>
+        <task-form></task-form>
+        <error-message></error-message>
+      </div>
     </div>
     <script src="components/card-tarea/card-tarea.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,4 +1,3 @@
-import './welcome-task.css';
 import templateHTML from './welcome-task.html';
 
 class WelcomeTask extends HTMLElement {
@@ -6,7 +5,7 @@ class WelcomeTask extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.innerHTML = templateHTML;
-    const style = document.createElement('style');
+    const templateCSS = document.createElement('style');
 
     style.textContent = `
         
@@ -50,7 +49,7 @@ class WelcomeTask extends HTMLElement {
         }
         }
         `;
-    this.shadowRoot.appendChild(style);
+    this.shadowRoot.appendChild(templateCSS);
 
   }
 
@@ -64,7 +63,6 @@ class WelcomeTask extends HTMLElement {
 
     createTaskButton.addEventListener('click', () => {
       createTaskButton.classList.add('clicked');
-      console.log('Botón de crear tarea clickeado');
     });
   }
 

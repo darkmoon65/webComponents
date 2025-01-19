@@ -6,6 +6,8 @@
   --bg-light: #ffffff28;
   --bg-dark: #000000;
   --bg-dark-t: #282828;
+  --bg-dark-o: #0000005b;
+
 
   --gradient-color-hard: linear-gradient(90deg, #5643aa 50%, #e950b4 50%);
 
@@ -39,4 +41,11 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
+  width: var(--w-full);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }

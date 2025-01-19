@@ -1,4 +1,3 @@
-import "./board-task.css";
 import templateHTML from "./board-task.html";
 
 class BoardTask extends HTMLElement {

@@ -1,4 +1,3 @@
-import "./modal-trash.css";
 import templateHTML from "./modal-trash.html";
 
 class ModalTrash extends HTMLElement {

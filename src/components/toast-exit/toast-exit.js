@@ -1,4 +1,3 @@
-import "./toast-exit.css";
 import templateHTML from "./toast-exit.html";
 
 class ToastExit extends HTMLElement {

@@ -1,4 +1,3 @@
-import "./create-task.css";
 import templateHTML from "./create-task.html";
 
 class CreateTask extends HTMLElement {

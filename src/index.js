@@ -10,45 +10,47 @@ import "./components/more-task/more-task.js";
 import "./components/board-task/board-task.js";
 import "./components/create-task/create-task.js";
 import "./components/modal-trash/modal-trash.js";
+import './components/welcome-task/welcome-task.js';
+import './components/toast-exit/toast-exit.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-  const app = document.querySelector("#app");
+    const app = document.querySelector("#app");
 
-  const loginTemplate = document.querySelector("#loginTemplate");
-  const dashboardTemplate = document.querySelector("#dashboardTemplate");
+    const loginTemplate = document.querySelector("#loginTemplate");
+    const dashboardTemplate = document.querySelector("#dashboardTemplate");
 
-  const isLoggedIn = sessionStorage.getItem("loggedIn");
+    const isLoggedIn = sessionStorage.getItem("loggedIn");
 
-  if (isLoggedIn) {
-    renderTemplate(dashboardTemplate);
-  } else {
-    renderTemplate(loginTemplate);
-  }
+    if (isLoggedIn) {
+        renderTemplate(dashboardTemplate);
+    } else {
+        renderTemplate(loginTemplate);
+    }
 
-  app.addEventListener("login-success", () => {
-    console.log("succeesss");
-    renderTemplate(dashboardTemplate);
-  });
+    app.addEventListener("login-success", () => {
+        console.log("succeesss");
+        renderTemplate(dashboardTemplate);
+    });
 
-  app.addEventListener("logout-success", () => {
-    console.log("succeesss");
-    renderTemplate(loginTemplate);
-  });
+    app.addEventListener("logout-success", () => {
+        console.log("succeesss");
+        renderTemplate(loginTemplate);
+    });
 
-  function renderTemplate(template) {
-    app.innerHTML = "";
-    const clone = template.content.cloneNode(true);
-    app.appendChild(clone);
-  }
+    function renderTemplate(template) {
+        app.innerHTML = "";
+        const clone = template.content.cloneNode(true);
+        app.appendChild(clone);
+    }
 });
 
 function initializeUsers() {
-  if (!localStorage.getItem("users")) {
-    const initialUsers = [
-      { username: "admin", password: "123456" },
-      { username: "user", password: "password" },
-    ];
-    localStorage.setItem("users", JSON.stringify(initialUsers));
-  }
+    if (!localStorage.getItem("users")) {
+        const initialUsers = [
+            { username: "admin", password: "123456" },
+            { username: "user", password: "password" },
+        ];
+        localStorage.setItem("users", JSON.stringify(initialUsers));
+    }
 }
 initializeUsers();

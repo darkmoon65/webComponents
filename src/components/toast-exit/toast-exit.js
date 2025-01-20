@@ -11,7 +11,7 @@ class ToastExit extends HTMLElement {
     style.textContent = `
 
         
-        .toast-exit{
+        .toast_exit{
           width:300px;
                     
 

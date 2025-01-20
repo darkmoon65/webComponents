@@ -24,6 +24,7 @@ class TaskForm extends HTMLElement {
           border-radius: var(--border-sm);
           box-shadow: var(--shadow-dark);
           width: 600px;
+          color:var(--text-light)
         }
 
         h1 {
@@ -41,6 +42,7 @@ class TaskForm extends HTMLElement {
         .form_group {
           display: flex;
           flex-direction: column;
+          font-family: var(--font-family);
         }
 
         label {
@@ -53,6 +55,7 @@ class TaskForm extends HTMLElement {
           border-radius: var(--border-sm);
           padding: 10px;
           font-size: var(--font-size-base);
+          font-family: var(--font-family);
         }
 
         textarea {
@@ -70,15 +73,15 @@ class TaskForm extends HTMLElement {
           background: var(--task-bg-pending);
           padding: 5px 10px;
           border-radius: var(--border-sm);
-          color: var(--text-light);
+          color: var(--text-dark);
           font-weight: var(--bold);
         }
 
         .form_actions {
           display: flex;
-          justify-content: space-between;
           gap: var(--gap-xs);
-        }
+          justify-content: space-around;
+          }
 
         .btn {
           padding: 10px;
@@ -89,14 +92,18 @@ class TaskForm extends HTMLElement {
         }
 
         .btn_cancel {
+          width:148px;        
           background: var(--task-bg-pending);
-          color: var(--text-light);
+          color: var(--text-dark);
         }
 
         .btn_create {
           background: var(--primary-color);
           color: var(--text-light);
-        }
+          width:148px;
+
+          }
+
         `;
     this.shadowRoot.appendChild(style);
 

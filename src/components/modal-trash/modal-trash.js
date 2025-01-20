@@ -16,6 +16,8 @@ class ModalTrash extends HTMLElement {
           align-items: center;
           width: var(--w-full);
           height: var(--h-full);
+          color: var(--text-light);
+
         }
 
         .modal {
@@ -24,31 +26,34 @@ class ModalTrash extends HTMLElement {
           border-radius: var(--border-sm);
           box-shadow: var(--shadow-dark);
           width: 600px;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          gap: var(--gap-xs);
+
+
         }
 
+        .modal-text{
+        }
         h1 {
           font-size: 1.5rem;
           margin-bottom: var(--gap-xs);
-          text-align: center;
         }
 
-        .modal {
-          display: flex;
-          flex-direction: column;
-          gap: var(--gap-xs);
-        }
-
+       
              
         .icon{
-        display:flex;
-        justify-content:center;
-        flex-direction:column;
-        align-items:center
+          display:flex;
+          justify-content:center;
+          flex-direction:column;
+          align-items:center;
         }
         .modal_actions {
           display: flex;
-          justify-content: space-between;
+          justify-content: space-around;
           gap: var(--gap-xs);
+          align-items:center;
         }
 
         .btn {
@@ -60,11 +65,13 @@ class ModalTrash extends HTMLElement {
         }
 
         .btn_cancel {
+          width:148px;
           background: var(--task-bg-pending);
-          color: var(--text-light);
+          color: var(--text-dark);
         }
 
         .btn_continue {
+          width:148px;
           background: var(--primary-color);
           color: var(--text-light);
         }

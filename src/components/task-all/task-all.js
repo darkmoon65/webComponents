@@ -1,4 +1,3 @@
-import "./task-all.css";
 import templateHTML from "./task-all.html";
 
 class TaskAll extends HTMLElement {

@@ -1,4 +1,3 @@
-import './task-filter.css';
 import templateHTML from './task-filter.html';
 
 class TaskFilter extends HTMLElement {

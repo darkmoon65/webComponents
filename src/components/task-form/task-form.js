@@ -1,4 +1,3 @@
-import "./task-form.css";
 import templateHTML from "./task-form.html";
 
 class TaskForm extends HTMLElement {
@@ -15,19 +14,21 @@ class TaskForm extends HTMLElement {
           justify-content: center;
           align-items: center;
         }
-        #task_modal {
+       #task_modal {
           display: none;
+          transform: translate(50%)
+          
         }
         .task_creation {
           position: absolute;
           top: 200px;
-          z-index: 10;
-          background: #b75454;
+          background: var(--bg-dark);
           padding: 20px;
           border-radius: var(--border-sm);
           box-shadow: var(--shadow-dark);
           width: 600px;
-          color:var(--text-light)
+          color:var(--text-light);
+
         }
 
         h1 {

@@ -1,4 +1,3 @@
-import "./web-header.css";
 import templateHTML from "./web-header.html";
 
 class WebHeader extends HTMLElement {

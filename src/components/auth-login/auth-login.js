@@ -1,12 +1,12 @@
-import templateHTML from './auth-login.html';
+import templateHTML from "./auth-login.html";
 
 class AuthLogin extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = templateHTML;
-        const style = document.createElement('style');
-        style.textContent = ` 
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.innerHTML = templateHTML;
+    const style = document.createElement("style");
+    style.textContent = ` 
           
               .auth_login{
                 background:var(--gradient-color-hard);
@@ -104,8 +104,58 @@ class AuthLogin extends HTMLElement {
         }
         `;
 
-        this.shadowRoot.appendChild(style);
+    this.shadowRoot.appendChild(style);
+
+    //bind
+    this.handleLogin = this.handleLogin.bind(this);
+    this.login = this.login.bind(this);
+  }
+
+  connectedCallback() {
+    const formLogin = this.shadowRoot.querySelector("#form_login");
+    formLogin.addEventListener("submit", this.handleLogin);
+  }
+
+  disconnectedCallback() {
+    const formLogin = this.shadowRoot.querySelector("#form_login");
+    console.log(formLogin);
+    formLogin.removeEventListener("submit", this.handleLogin);
+  }
+
+  handleLogin(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const user = formData.get("usuario");
+    const password = formData.get("password");
+
+    const loggedIn = this.login(user, password);
+
+    if (loggedIn) {
+      const loginEvent = new CustomEvent("login-success", {
+        bubbles: true,
+        composed: true,
+      });
+      this.dispatchEvent(loginEvent);
+    } else {
+      alert("Usuario o contraseña incorrectos");
     }
+  }
+
+  login(username, password) {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find(
+      (u) => u.username === username && u.password === password
+    );
+
+    if (user) {
+      sessionStorage.setItem("loggedIn", true);
+      sessionStorage.setItem("username", username);
+      return true;
+    }
+
+    return false;
+  }
 }
 
-customElements.define('auth-login', AuthLogin);
+customElements.define("auth-login", AuthLogin);

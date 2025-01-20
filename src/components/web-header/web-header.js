@@ -1,14 +1,14 @@
-import './web-header.css';
-import templateHTML from './web-header.html';
+import "./web-header.css";
+import templateHTML from "./web-header.html";
 
 class WebHeader extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.innerHTML = templateHTML;
-        const style = document.createElement('style');
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.innerHTML = templateHTML;
+    const style = document.createElement("style");
 
-        style.textContent = `
+    style.textContent = `
         .web_header {
             display: flex;
             align-items: center;
@@ -56,24 +56,21 @@ class WebHeader extends HTMLElement {
             cursor: pointer;
           }
         `;
-        this.shadowRoot.appendChild(style);
+    this.shadowRoot.appendChild(style);
+  }
 
-    }
-
-    connectedCallback() {
-        this.render();
-    }
-
-    render() {
-        // Manejo de eventos
-        const completeButton = this.shadowRoot.querySelector('#completeButton');
-        const deleteButton = this.shadowRoot.querySelector('#deleteButton');
-
-        completeButton.addEventListener('click', () => this.markCompleted());
-        deleteButton.addEventListener('click', () => this.deleteTask());
-    }
-
-
+  connectedCallback() {
+    const btnLogout = this.shadowRoot.querySelector("#logout_btn");
+    btnLogout.addEventListener("click", () => {
+      sessionStorage.removeItem("loggedIn");
+      sessionStorage.removeItem("username");
+      const logoutEvent = new CustomEvent("logout-success", {
+        bubbles: true,
+        composed: true,
+      });
+      this.dispatchEvent(logoutEvent);
+    });
+  }
 }
 
-customElements.define('web-header', WebHeader);
+customElements.define("web-header", WebHeader);

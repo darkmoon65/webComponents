@@ -32,6 +32,12 @@ class BoardTask extends HTMLElement {
         justify-content:space-between;
         gap:25px;
       }
+
+      .toast-exit{
+        display: flex;
+        flex-direction: column;
+        align-items:flex-end;
+      }
         `;
     this.shadowRoot.appendChild(style);
 

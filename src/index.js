@@ -10,6 +10,8 @@ import './components/more-task/more-task.js';
 import './components/board-task/board-task.js';
 import './components/create-task/create-task.js';
 import './components/modal-trash/modal-trash.js';
+import './components/welcome-task/welcome-task.js';
+import './components/toast-exit/toast-exit.js';
 
 
 

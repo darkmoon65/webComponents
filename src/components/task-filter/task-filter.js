@@ -19,11 +19,9 @@ class TaskFilter extends HTMLElement {
             background-color: var(--secondary-color);
             color:var(--text-light);
             width:110px;
-            height:90px;
+            height:140px;
             padding:10px 16px;
             border-radius: var(--border-sm);
-            justify-content: center;
-            align-items:center;
             box-shadow: var(--shadow-dark);
             line-height: 45px;
             font-weight: normal;

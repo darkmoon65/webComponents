@@ -1,12 +1,12 @@
-import './task-form.css';
-import templateHTML from './task-form.html';
+import "./task-form.css";
+import templateHTML from "./task-form.html";
 
 class TaskForm extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = templateHTML;
-    const style = document.createElement('style');
+    const style = document.createElement("style");
 
     style.textContent = `
         
@@ -14,12 +14,14 @@ class TaskForm extends HTMLElement {
           display: flex;
           justify-content: center;
           align-items: center;
-          width: var(--w-full);
-          height: var(--h-full);
         }
-
+        #task_modal {
+          display: none;
+        }
         .task_creation {
-          background: var(--bg-light);
+          position: absolute;
+          top: 200px;
+          background: #b75454;
           padding: 20px;
           border-radius: var(--border-sm);
           box-shadow: var(--shadow-dark);
@@ -106,29 +108,65 @@ class TaskForm extends HTMLElement {
 
         `;
     this.shadowRoot.appendChild(style);
-
+    this.create = this.create.bind(this);
+    this.close = this.close.bind(this);
   }
 
   connectedCallback() {
+    document.addEventListener("toggle-modal", () => {
+      const modal = this.shadowRoot.querySelector("#task_modal");
+      modal.style.display = "block";
+    });
     this.render();
   }
 
   render() {
-    // Manejo de eventos
-    const completeButton = this.shadowRoot.querySelector('#completeButton');
-    const deleteButton = this.shadowRoot.querySelector('#deleteButton');
+    const cancelBtn = this.shadowRoot.querySelector("#btn_cancel");
+    const formCreate = this.shadowRoot.querySelector("#form_create");
 
-    completeButton.addEventListener('click', () => this.markCompleted());
-    deleteButton.addEventListener('click', () => this.deleteTask());
+    formCreate.addEventListener("submit", this.create);
+    cancelBtn.addEventListener("click", () => this.close());
   }
 
-  markCompleted() {
-    console.log('Tarea completada');
+  create(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const titulo = formData.get("titulo");
+    const descripcion = formData.get("descripcion");
+
+    console.log({ titulo, descripcion });
+    const notas = JSON.parse(localStorage.getItem("notas")) || [];
+
+    const newNote = {
+      id: Date.now(),
+      titulo,
+      descripcion,
+      completada: false,
+    };
+
+    notas.push(newNote);
+
+    localStorage.setItem("notas", JSON.stringify(notas));
+    const createEvent = new CustomEvent("create-task", {
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(createEvent);
+
+    const toastEvent = new CustomEvent("open-toast", {
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(toastEvent);
+
+    this.close();
   }
 
-  deleteTask() {
-    console.log('Tarea eliminada');
+  close() {
+    const modal = this.shadowRoot.querySelector("#task_modal");
+    modal.style.display = "none";
   }
 }
 
-customElements.define('task-form', TaskForm);
+customElements.define("task-form", TaskForm);

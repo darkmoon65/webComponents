@@ -1,12 +1,12 @@
-import './task-all.css';
-import templateHTML from './task-all.html';
+import "./task-all.css";
+import templateHTML from "./task-all.html";
 
 class TaskAll extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = templateHTML;
-    const style = document.createElement('style');
+    const style = document.createElement("style");
 
     style.textContent = `
 
@@ -34,23 +34,13 @@ class TaskAll extends HTMLElement {
  
         `;
     this.shadowRoot.appendChild(style);
-
   }
 
   connectedCallback() {
     this.render();
   }
 
-  render() {
-    // Manejo de eventos
-    const completeButton = this.shadowRoot.querySelector('#completeButton');
-    const deleteButton = this.shadowRoot.querySelector('#deleteButton');
-
-    completeButton.addEventListener('click', () => this.markCompleted());
-    deleteButton.addEventListener('click', () => this.deleteTask());
-  }
-
-
+  render() {}
 }
 
-customElements.define('task-all', TaskAll);
+customElements.define("task-all", TaskAll);

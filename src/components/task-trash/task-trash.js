@@ -1,12 +1,12 @@
-import './task-trash.css';
-import templateHTML from './task-trash.html';
+import "./task-trash.css";
+import templateHTML from "./task-trash.html";
 
 class TaskTrash extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = templateHTML;
-    const style = document.createElement('style');
+    const style = document.createElement("style");
 
     style.textContent = `
 
@@ -28,23 +28,13 @@ class TaskTrash extends HTMLElement {
          
         `;
     this.shadowRoot.appendChild(style);
-
   }
 
   connectedCallback() {
     this.render();
   }
 
-  render() {
-    // Manejo de eventos
-    const completeButton = this.shadowRoot.querySelector('#completeButton');
-    const deleteButton = this.shadowRoot.querySelector('#deleteButton');
-
-    completeButton.addEventListener('click', () => this.markCompleted());
-    deleteButton.addEventListener('click', () => this.deleteTask());
-  }
-
-
+  render() {}
 }
 
-customElements.define('task-trash', TaskTrash);
+customElements.define("task-trash", TaskTrash);

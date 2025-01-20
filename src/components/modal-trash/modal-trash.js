@@ -1,12 +1,12 @@
-import './modal-trash.css';
-import templateHTML from './modal-trash.html';
+import "./modal-trash.css";
+import templateHTML from "./modal-trash.html";
 
 class ModalTrash extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = templateHTML;
-    const style = document.createElement('style');
+    const style = document.createElement("style");
 
     style.textContent = `
         
@@ -77,29 +77,21 @@ class ModalTrash extends HTMLElement {
         }
         `;
     this.shadowRoot.appendChild(style);
-
   }
 
   connectedCallback() {
     this.render();
   }
 
-  render() {
-    // Manejo de eventos
-    const completeButton = this.shadowRoot.querySelector('#completeButton');
-    const deleteButton = this.shadowRoot.querySelector('#deleteButton');
-
-    completeButton.addEventListener('click', () => this.markCompleted());
-    deleteButton.addEventListener('click', () => this.deleteTask());
-  }
+  render() {}
 
   markCompleted() {
-    console.log('Tarea completada');
+    console.log("Tarea completada");
   }
 
   deleteTask() {
-    console.log('Tarea eliminada');
+    console.log("Tarea eliminada");
   }
 }
 
-customElements.define('modal-trash', ModalTrash);
+customElements.define("modal-trash", ModalTrash);

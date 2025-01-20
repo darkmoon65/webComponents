@@ -1,12 +1,12 @@
-import './create-task.css';
-import templateHTML from './create-task.html';
+import "./create-task.css";
+import templateHTML from "./create-task.html";
 
 class CreateTask extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = templateHTML;
-    const style = document.createElement('style');
+    const style = document.createElement("style");
 
     style.textContent = `
 
@@ -28,23 +28,22 @@ class CreateTask extends HTMLElement {
         `;
     this.shadowRoot.appendChild(style);
 
+    const crearBtn = this.shadowRoot.querySelector("#crear_btn");
+
+    crearBtn.addEventListener("click", () => {
+      const toggleEvent = new CustomEvent("toggle-modal", {
+        bubbles: true,
+        composed: true,
+      });
+      this.dispatchEvent(toggleEvent);
+    });
   }
 
   connectedCallback() {
     this.render();
   }
 
-  render() {
-    // Manejo de eventos
-    const filterHeader = this.shadowRoot.querySelector('.filter_header');
-    const filterOption = this.shadowRoot.querySelector('.filter_option');
-
-    filterHeader.addEventListener('click', () => {
-      filterOption.style.display = filterOption.style.display === 'none' ? 'block' : 'none';
-    });
-  }
-
-
+  render() {}
 }
 
-customElements.define('create-task', CreateTask);
+customElements.define("create-task", CreateTask);

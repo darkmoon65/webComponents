@@ -1,12 +1,12 @@
-import './more-task.css';
-import templateHTML from './more-task.html';
+import "./more-task.css";
+import templateHTML from "./more-task.html";
 
 class MoreTask extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = templateHTML;
-    const style = document.createElement('style');
+    const style = document.createElement("style");
 
     style.textContent = `
 
@@ -40,7 +40,6 @@ class MoreTask extends HTMLElement {
  
         `;
     this.shadowRoot.appendChild(style);
-
   }
 
   connectedCallback() {
@@ -48,15 +47,22 @@ class MoreTask extends HTMLElement {
   }
 
   render() {
-    const moreHeader = this.shadowRoot.querySelector('.more_header');
-    const moreOption = this.shadowRoot.querySelector('.more_option');
+    const moreHeader = this.shadowRoot.querySelector(".more_header");
+    const moreOption = this.shadowRoot.querySelector(".more_option");
+    moreHeader.addEventListener("click", () => {
+      moreOption.style.display =
+        moreOption.style.display === "none" ? "block" : "none";
+    });
 
-    moreHeader.addEventListener('click', () => {
-      moreOption.style.display = moreOption.style.display === 'none' ? 'block' : 'none';
+    const eliminar = this.shadowRoot.querySelector("#eliminar");
+    eliminar.addEventListener("click", () => {
+      const deleteEvent = new CustomEvent("delete", {
+        bubbles: true,
+        composed: true,
+      });
+      this.dispatchEvent(deleteEvent);
     });
   }
-
-
 }
 
-customElements.define('more-task', MoreTask);
+customElements.define("more-task", MoreTask);

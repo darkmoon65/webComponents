@@ -62,6 +62,15 @@ class MoreTask extends HTMLElement {
       });
       this.dispatchEvent(deleteEvent);
     });
+
+    const editar = this.shadowRoot.querySelector("#editar");
+    editar.addEventListener("click", () => {
+      const editEvent = new CustomEvent("edit", {
+        bubbles: true,
+        composed: true,
+      });
+      this.dispatchEvent(editEvent);
+    });
   }
 }
 

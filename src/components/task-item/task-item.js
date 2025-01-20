@@ -74,6 +74,7 @@ class TaskItem extends HTMLElement {
         `;
     this.shadowRoot.appendChild(style);
     this.openModal = this.openModal.bind(this);
+    this.openModalEditar = this.openModalEditar.bind(this);
   }
 
   connectedCallback() {
@@ -121,6 +122,8 @@ class TaskItem extends HTMLElement {
         console.error(`Tarea con ID ${taskId} no encontrada.`);
       }
     });
+
+    document.addEventListener("edit", this.openModalEditar);
   }
 
   markCompleted() {}
@@ -132,6 +135,20 @@ class TaskItem extends HTMLElement {
       composed: true,
     });
     this.dispatchEvent(deleteEvent);
+  }
+
+  openModalEditar() {
+    const editEvent = new CustomEvent("open-edit", {
+      detail: {
+        id: this.getAttribute("id"),
+        titulo: this.getAttribute("titulo"),
+        descripcion: this.getAttribute("descripcion"),
+      },
+      bubbles: true,
+      composed: true,
+    });
+    console.log("openedit");
+    this.dispatchEvent(editEvent);
   }
 }
 

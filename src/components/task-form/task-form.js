@@ -127,6 +127,11 @@ class TaskForm extends HTMLElement {
 
     formCreate.addEventListener("submit", this.create);
     cancelBtn.addEventListener("click", () => this.close());
+
+    document.addEventListener("open-edit", (event) => {
+      const { id, titulo, descripcion } = event.detail;
+      const editModal = this.shadowRoot.querySelector("#task_modal");
+    });
   }
 
   create(event) {

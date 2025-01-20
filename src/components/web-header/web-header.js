@@ -61,6 +61,7 @@ class WebHeader extends HTMLElement {
 
   connectedCallback() {
     const btnLogout = this.shadowRoot.querySelector("#logout_btn");
+    const userNameBox = this.shadowRoot.querySelector("#user_name");
     btnLogout.addEventListener("click", () => {
       sessionStorage.removeItem("loggedIn");
       sessionStorage.removeItem("username");
@@ -70,6 +71,12 @@ class WebHeader extends HTMLElement {
       });
       this.dispatchEvent(logoutEvent);
     });
+    const username = sessionStorage.getItem("username");
+    if (username) {
+      userNameBox.textContent = username;
+    } else {
+      userNameBox.textContent = "Usuario desconocido";
+    }
   }
 }
 

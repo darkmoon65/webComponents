@@ -21,6 +21,7 @@ class TaskForm extends HTMLElement {
         .task_creation {
           position: absolute;
           top: 200px;
+          z-index: 10;
           background: #b75454;
           padding: 20px;
           border-radius: var(--border-sm);

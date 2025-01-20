@@ -14,14 +14,15 @@ class ModalTrash extends HTMLElement {
           display: flex;
           justify-content: center;
           align-items: center;
-          width: var(--w-full);
-          height: var(--h-full);
           color: var(--text-light);
-
         }
-
+        #modal_trash {
+          display: none;
+          position: absolute;
+          top: 200px;
+        }
         .modal {
-          background: var(--bg-light);
+          background: black;
           padding: 20px;
           border-radius: var(--border-sm);
           box-shadow: var(--shadow-dark);
@@ -77,20 +78,46 @@ class ModalTrash extends HTMLElement {
         }
         `;
     this.shadowRoot.appendChild(style);
+    this.taskId = "";
+    this.close = this.close.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
+    this.modalTrash = this.shadowRoot.querySelector("#modal_trash");
   }
 
   connectedCallback() {
     this.render();
   }
 
-  render() {}
+  render() {
+    document.addEventListener("open-delete-task", (event) => {
+      const id = event.detail.id;
+      console.log(id);
+      this.taskId = id;
+      const modal = this.shadowRoot.querySelector("#modal_trash");
+      modal.style.display = "block";
+    });
 
-  markCompleted() {
-    console.log("Tarea completada");
+    const cancelBtn = this.shadowRoot.querySelector("#btn_cancel");
+    const confirmarBtn = this.shadowRoot.querySelector("#btn_confirmar");
+
+    confirmarBtn.addEventListener("click", this.deleteTask);
+    cancelBtn.addEventListener("click", () => this.close());
   }
 
   deleteTask() {
-    console.log("Tarea eliminada");
+    console.log(this.taskId);
+    const deleteEvent = new CustomEvent("delete-task", {
+      detail: { id: this.taskId },
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(deleteEvent);
+    console.log(this.modalTrash);
+    this.modalTrash.style.display = "none";
+  }
+  close() {
+    const modal = this.shadowRoot.querySelector("#modal_trash");
+    modal.style.display = "none";
   }
 }
 

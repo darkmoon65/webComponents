@@ -73,7 +73,7 @@ class TaskItem extends HTMLElement {
 
         `;
     this.shadowRoot.appendChild(style);
-    this.deleteTask = this.deleteTask.bind(this);
+    this.openModal = this.openModal.bind(this);
   }
 
   connectedCallback() {
@@ -83,22 +83,50 @@ class TaskItem extends HTMLElement {
   render() {
     const titulo = this.getAttribute("titulo") || "Sin título";
     const descripcion = this.getAttribute("descripcion") || "Sin descripción";
+    const status = this.getAttribute("status") || false;
 
     this.shadowRoot.querySelector("#task_title").textContent = titulo;
     this.shadowRoot.querySelector("#task_description").textContent =
       descripcion;
+    let status_box = this.shadowRoot.querySelector(".status");
+
+    if (status === "true") {
+      status_box.textContent = "Marcar como pendiente";
+      status_box.id = "pending_btn";
+    } else {
+      status_box.textContent = "Marcar como completada";
+      status_box.id = "complete_btn";
+    }
 
     const task = this.shadowRoot.querySelector(".container");
-    task.addEventListener("delete", this.deleteTask);
+    task.addEventListener("delete", this.openModal);
+
+    status_box.addEventListener("click", (event) => {
+      const taskId = this.getAttribute("id");
+      const notas = JSON.parse(localStorage.getItem("notas")) || [];
+
+      const tarea = notas.find((nota) => nota.id === parseInt(taskId));
+      if (tarea) {
+        tarea.completada = !tarea.completada;
+        localStorage.setItem("notas", JSON.stringify(notas));
+
+        if (tarea.completada) {
+          status_box.textContent = "Marcar como pendiente";
+          status_box.id = "pending_btn";
+        } else {
+          status_box.textContent = "Marcar como completada";
+          status_box.id = "complete_btn";
+        }
+      } else {
+        console.error(`Tarea con ID ${taskId} no encontrada.`);
+      }
+    });
   }
 
-  markCompleted() {
-    console.log("Tarea completada");
-  }
+  markCompleted() {}
 
-  deleteTask() {
-    console.log("Tarea eliminada:", this.getAttribute("titulo"));
-    const deleteEvent = new CustomEvent("delete-task", {
+  openModal() {
+    const deleteEvent = new CustomEvent("open-delete-task", {
       detail: { id: this.getAttribute("id") },
       bubbles: true,
       composed: true,

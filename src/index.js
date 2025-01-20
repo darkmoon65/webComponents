@@ -28,12 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   app.addEventListener("login-success", () => {
-    console.log("succeesss");
     renderTemplate(dashboardTemplate);
   });
 
   app.addEventListener("logout-success", () => {
-    console.log("succeesss");
     renderTemplate(loginTemplate);
   });
 
@@ -45,12 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initializeUsers() {
-  if (!localStorage.getItem("users")) {
-    const initialUsers = [
-      { username: "admin", password: "123456" },
-      { username: "user", password: "password" },
-    ];
-    localStorage.setItem("users", JSON.stringify(initialUsers));
-  }
+  const initialUsers = [
+    { username: "admin", password: "123456" },
+    { username: "userTest", password: "1234" },
+  ];
+  localStorage.setItem("users", JSON.stringify(initialUsers));
 }
 initializeUsers();

@@ -49,13 +49,13 @@ class BoardTask extends HTMLElement {
   }
 
   render() {
-    const tasksContainer = this.shadowRoot.querySelector("#tasks_container");
     const boardContainer = this.shadowRoot.querySelector("#board_container");
 
     this.renderTasks();
 
-    tasksContainer.addEventListener("delete-task", (event) => {
+    boardContainer.addEventListener("delete-task", (event) => {
       const taskId = event.detail.id;
+      console.log(taskId);
       let notas = JSON.parse(localStorage.getItem("notas")) || [];
       notas = notas.filter((nota) => nota.id !== parseInt(taskId));
       localStorage.setItem("notas", JSON.stringify(notas));
@@ -75,9 +75,16 @@ class BoardTask extends HTMLElement {
       const taskElement = document.createElement("task-item");
       taskElement.setAttribute("titulo", nota.titulo);
       taskElement.setAttribute("descripcion", nota.descripcion);
+      taskElement.setAttribute("status", nota.completada);
       taskElement.setAttribute("id", nota.id);
       tasksContainer.appendChild(taskElement);
     });
+
+    if (notas.length === 0) {
+      const welcomeBox = this.shadowRoot.querySelector("#welcome_default");
+      const clone = welcomeBox.content.cloneNode(true);
+      tasksContainer.appendChild(clone);
+    }
   }
 }
 
